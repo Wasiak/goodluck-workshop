@@ -9,8 +9,13 @@ export function world_one(game: Game) {
     game.World = [];
 
     game.Add({
-        Translation: [game.ViewportWidth / 2, game.ViewportHeight / 2],
-        Using: [control_paddle(), draw_rect(30, 200, 'green'), move([0, 0], 100)],
+        Translation: [game.ViewportWidth / 2, game.ViewportHeight - 45],
+        Using: [
+            control_paddle(),
+            draw_rect(30, 200, 'green'),
+            move([0, 0], 200),
+            collide([200, 30])
+        ],
     });
 
     for (let i = 0; i < 10; i++) {

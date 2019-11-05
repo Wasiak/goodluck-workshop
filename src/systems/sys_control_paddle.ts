@@ -27,13 +27,13 @@ function update(game: Game, entity: Entity, delta: number) {
         move.Direction[0] += 1;
         console.log('elo arrow right')
     }
-    if (inputState.ArrowUp) {
-        move.Direction[1] += -1;
-        console.log('elo arrow up')
-    }
-    if (inputState.ArrowDown) {
-        move.Direction[1] += 1;
-        console.log('elo arrow down')
-    }
+    // if (inputState.ArrowUp) {
+    //     move.Direction[1] += -1;
+    //     console.log('elo arrow up')
+    // }
+    // if (inputState.ArrowDown) {
+    //     move.Direction[1] += 1;
+    //     console.log('elo arrow down')
+    // }
 
 }
