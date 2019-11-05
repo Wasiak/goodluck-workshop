@@ -1,5 +1,8 @@
+import { draw_rect } from "../components/com_draw.js";
+import { draw_fade } from "../components/com_fade.js";
 import { Get, Has } from "../components/com_index.js";
 import { Entity, Game } from "../game.js";
+import { Vec2 } from '../math/index';
 
 const QUERY = Has.Transform2D | Has.ControlBall | Has.Move;
 
@@ -46,4 +49,12 @@ function update(game: Game, entity: Entity, delta: number) {
 
     move.Direction[0] = control.Direction[0];
     move.Direction[1] = control.Direction[1];
+
+    game.Add({
+        Translation: [...transform.Translation] as Vec2,
+        Using: [
+            draw_rect(20, 20, 'red'),
+            draw_fade(0.05)
+        ]
+    })
 }

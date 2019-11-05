@@ -16,24 +16,13 @@ function update(game: Game, entity: Entity, delta: number) {
     move.Direction[0] = 0;
     move.Direction[1] = 0;
 
-
+    let transform = game[Get.Transform2D][entity];
+    let draw = game[Get.Draw][entity];
     let inputState = game.InputState;
-    if (inputState.ArrowLeft) {
+    if (inputState.ArrowLeft && (transform.Translation[0] - draw.Width / 2) > 0) {
         move.Direction[0] += -1;
-
-        console.log('elo arrow left')
     }
-    if (inputState.ArrowRight) {
+    if (inputState.ArrowRight && (transform.Translation[0] + draw.Width / 2) < game.ViewportWidth) {
         move.Direction[0] += 1;
-        console.log('elo arrow right')
     }
-    // if (inputState.ArrowUp) {
-    //     move.Direction[1] += -1;
-    //     console.log('elo arrow up')
-    // }
-    // if (inputState.ArrowDown) {
-    //     move.Direction[1] += 1;
-    //     console.log('elo arrow down')
-    // }
-
 }

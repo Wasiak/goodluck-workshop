@@ -3,6 +3,7 @@ import { control_ball } from "../components/com_control_ball.js";
 import { control_brick } from '../components/com_control_brick.js';
 import { control_paddle } from "../components/com_control_paddle.js";
 import { draw_rect } from "../components/com_draw.js";
+import { draw_fade } from "../components/com_fade.js";
 import { move } from "../components/com_move.js";
 import { Game } from "../game.js";
 
@@ -37,7 +38,8 @@ export function world_one(game: Game) {
                 Using: [
                     draw_rect(20, 50, 'blue'),
                     collide([50, 20]),
-                    control_brick()
+                    control_brick(),
+                    draw_fade(0)
                 ],
             });
         }

@@ -15,6 +15,8 @@ function update(game: Game, entity: Entity, delta: number) {
     let collider = game[Get.Collide][entity];
     if (collider.Collisions.length) {
         console.log('collide')
-        game.Destroy(entity);
+        // game.Destroy(entity);
+        let fade = game[Get.Fade][entity];
+        fade.Step = 0.01;
     }
 }
