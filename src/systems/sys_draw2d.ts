@@ -1,5 +1,5 @@
-import {Get, Has} from "../components/com_index.js";
-import {Entity, Game} from "../game.js";
+import { Get, Has } from "../components/com_index.js";
+import { Entity, Game } from "../game.js";
 
 const QUERY = Has.Transform2D | Has.Draw;
 
@@ -26,6 +26,6 @@ export function sys_draw2d(game: Game, delta: number) {
 
 function draw_rect(game: Game, entity: Entity) {
     let draw = game[Get.Draw][entity];
-    game.Context2D.fillStyle = "red";
-    game.Context2D.fillRect(-draw.Size / 2, -draw.Size / 2, draw.Size, draw.Size);
+    game.Context2D.fillStyle = draw.Color;
+    game.Context2D.fillRect(-draw.Width / 2, -draw.Height / 2, draw.Width, draw.Height);
 }
