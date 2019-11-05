@@ -16,13 +16,15 @@ import { Get, Has } from "./com_index";
 // }
 export interface Move {
     Direction: Vec2;
+    Speed: number;
 }
 
-export function move(Direction: Vec2 = [0, 0]) {
+export function move(Direction: Vec2 = [0, 0], Speed: number = 100) {
     return (game: Game, entity: Entity) => {
         game.World[entity] |= Has.Move;
         game[Get.Move][entity] = <Move>{
-            Direction
+            Direction,
+            Speed
         };
     };
 }
