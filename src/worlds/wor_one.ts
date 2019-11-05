@@ -12,7 +12,7 @@ export function world_one(game: Game) {
 
     game.Add({
         Translation: [0, 0],
-        Using: [draw_rect(100)],
+        Using: [control_paddle(), draw_rect(100)],
     });
 
 }
