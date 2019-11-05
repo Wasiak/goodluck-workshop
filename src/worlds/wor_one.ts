@@ -19,7 +19,7 @@ export function world_one(game: Game) {
             Using: [
                 control_ball(Math.PI + Math.random() * Math.PI),
                 draw_rect(20, 20, 'red'),
-                move([0, 0], 700),
+                move([0, 0], 300),
                 collide([20, 20])
             ],
         });

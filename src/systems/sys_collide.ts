@@ -3,6 +3,7 @@ import { Get, Has } from "../components/com_index.js";
 import { Transform2D } from "../components/com_transform2d.js";
 import { Game } from "../game.js";
 import { Vec2 } from "../math/index.js";
+import { negate } from "../math/vec2.js";
 
 const QUERY = Has.Transform2D | Has.Collide;
 
@@ -47,7 +48,11 @@ function check_collisions(collider: Collide, colliders: Collide[]) {
             collider.Collisions.push({
                 Other: collide,
                 Hit: penetration,
-            })
+            });
+            collide.Collisions.push({
+                Other: collider,
+                Hit: negate([0, 0], penetration),
+            });
         }
     }
 
