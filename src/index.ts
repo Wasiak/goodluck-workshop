@@ -1,8 +1,8 @@
-import {Game} from "./game.js";
-import {world_one} from "./worlds/wor_one.js";
+import { Game } from "./game.js";
+import { world_two } from './worlds/wor_two.js';
 
 let game = new Game();
-world_one(game);
+world_two(game);
 game.Start();
 
 // @ts-ignore

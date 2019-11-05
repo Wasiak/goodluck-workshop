@@ -1,15 +1,17 @@
-import {Collide} from "./components/com_collide.js";
-import {ControlPaddle} from "./components/com_control_paddle.js";
-import {Draw} from "./components/com_draw.js";
-import {ComponentData, Get, Has} from "./components/com_index.js";
-import {Transform2D, transform2d} from "./components/com_transform2d.js";
-import {Rad, Vec2} from "./math/index.js";
-import {sys_collide} from "./systems/sys_collide.js";
-import {sys_control_paddle} from "./systems/sys_control_paddle.js";
-import {sys_draw2d} from "./systems/sys_draw2d.js";
-import {sys_framerate} from "./systems/sys_framerate.js";
-import {sys_performance} from "./systems/sys_performance.js";
-import {sys_transform2d} from "./systems/sys_transform2d.js";
+import { Collide } from "./components/com_collide.js";
+import { ControlBall } from "./components/com_control_ball.js";
+import { ControlPaddle } from "./components/com_control_paddle.js";
+import { Draw } from "./components/com_draw.js";
+import { ComponentData, Get, Has } from "./components/com_index.js";
+import { Transform2D, transform2d } from "./components/com_transform2d.js";
+import { Rad, Vec2 } from "./math/index.js";
+import { sys_collide } from "./systems/sys_collide.js";
+import { sys_control_ball } from "./systems/sys_control_ball.js";
+import { sys_control_paddle } from "./systems/sys_control_paddle.js";
+import { sys_draw2d } from "./systems/sys_draw2d.js";
+import { sys_framerate } from "./systems/sys_framerate.js";
+import { sys_performance } from "./systems/sys_performance.js";
+import { sys_transform2d } from "./systems/sys_transform2d.js";
 
 const MAX_ENTITIES = 10000;
 
@@ -21,13 +23,14 @@ export class Game implements ComponentData {
     public [Get.ControlPaddle]: Array<ControlPaddle> = [];
     public [Get.Draw]: Array<Draw> = [];
     public [Get.Transform2D]: Array<Transform2D> = [];
+    public [Get.ControlBall]: Array<ControlBall> = [];
 
     public ViewportWidth = window.innerWidth;
     public ViewportHeight = window.innerHeight;
     public Context2D: CanvasRenderingContext2D;
     public UI = document.querySelector("main")!;
-    public InputState: InputState = {mouse_x: 0, mouse_y: 0};
-    public InputEvent: InputEvent = {mouse_x: 0, mouse_y: 0, wheel_y: 0};
+    public InputState: InputState = { mouse_x: 0, mouse_y: 0 };
+    public InputEvent: InputEvent = { mouse_x: 0, mouse_y: 0, wheel_y: 0 };
 
     private RAF: number = 0;
 
@@ -77,6 +80,7 @@ export class Game implements ComponentData {
         let now = performance.now();
 
         sys_control_paddle(this, delta);
+        sys_control_ball(this, delta);
         sys_transform2d(this, delta);
         sys_collide(this, delta);
         sys_draw2d(this, delta);
@@ -110,7 +114,7 @@ export class Game implements ComponentData {
         cancelAnimationFrame(this.RAF);
     }
 
-    Add({Translation, Rotation, Scale, Using = [], Children = []}: Blueprint2D) {
+    Add({ Translation, Rotation, Scale, Using = [], Children = [] }: Blueprint2D) {
         let entity = this.CreateEntity();
         transform2d(Translation, Rotation, Scale)(this, entity);
         for (let mixin of Using) {
