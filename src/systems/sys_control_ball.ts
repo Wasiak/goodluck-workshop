@@ -17,7 +17,6 @@ function update(game: Game, entity: Entity, delta: number) {
     let transform = game[Get.Transform2D][entity];
     let collider = game[Get.Collide][entity];
     if (collider.Collisions.length) {
-        console.log('collider = ', collider.Collisions[0]])
         let collision = collider.Collisions[0];
         if (collision.Hit[0] !== 0) {
             control.Direction[0] *= -1;
@@ -28,7 +27,6 @@ function update(game: Game, entity: Entity, delta: number) {
         }
     }
 
-    // console.log(transform)
     if (transform.Translation[0] <= 0) {
         control.Direction[0] *= -1;
         transform.Translation[0] = 0;

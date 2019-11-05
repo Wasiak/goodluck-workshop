@@ -32,7 +32,7 @@ function compute_aabb(transform: Transform2D, collide: Collide) {
     let height = collide.Size[1];
     let x = transform.Translation[0];
     let y = transform.Translation[1];
-    // change to collide.Center[0] ; collide.Center[1]etc.
+    // change to coll ide.Center[0] ; collide.Center[1]etc.
     collide.Center = [x, y];
     collide.Min = [x - width / 2, y - height / 2];
     collide.Max = [x + width / 2, y + height / 2];
